@@ -6,7 +6,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:template/core/controllers/theme_controller.dart';
 import 'package:template/core/themes/app_theme.dart';
-import 'package:template/features/todo/screens/sample_screen.dart';
+import 'package:template/features/fitness/screens/my_progress_screen.dart';
+import 'package:template/features/onboarding/screens/onboarding_step1_screen.dart';
+import 'package:template/features/onboarding/screens/onboarding_step2_screen.dart';
+import 'package:template/features/onboarding/screens/onboarding_step3_screen.dart';
+import 'package:template/features/onboarding/screens/onboarding_step4_screen.dart';
 import 'package:template/setup.dart';
 
 /// 앱 시작점
@@ -53,7 +57,14 @@ class MyApp extends ConsumerWidget {
       locale: context.locale,
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,
-      home: const SampleScreen(),
+      home: const OnboardingStep1Screen(),
+      routes: {
+        '/onboarding/step1': (context) => const OnboardingStep1Screen(),
+        '/onboarding/step2': (context) => const OnboardingStep2Screen(),
+        '/onboarding/step3': (context) => const OnboardingStep3Screen(),
+        '/onboarding/step4': (context) => const OnboardingStep4Screen(),
+        '/home': (context) => const MyProgressScreen(),
+      },
     );
   }
 }
