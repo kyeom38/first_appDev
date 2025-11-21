@@ -82,7 +82,9 @@ class _AddRoutineScreenState extends ConsumerState<AddRoutineScreen> {
       return;
     }
 
-    ref.read(routineProvider.notifier).addRoutine(
+    ref
+        .read(routineProvider.notifier)
+        .addRoutine(
           name: name,
           goalCount: goal,
           goalUnit: _selectedUnit,

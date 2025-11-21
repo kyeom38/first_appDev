@@ -2,9 +2,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/onboarding_data.dart';
 
 /// 온보딩 데이터 Provider
-final onboardingProvider = NotifierProvider<OnboardingController, OnboardingData>(
-  OnboardingController.new,
-);
+final onboardingProvider =
+    NotifierProvider<OnboardingController, OnboardingData>(
+      OnboardingController.new,
+    );
 
 /// 온보딩 컨트롤러
 ///
@@ -20,14 +21,19 @@ class OnboardingController extends Notifier<OnboardingData> {
     state = state.copyWith(nickname: nickname);
   }
 
+  // 비밀번호 업데이트
+  void updatePassword(String password) {
+    state = state.copyWith(password: password);
+  }
+
   /// 성별 업데이트
   void updateGender(Gender gender) {
     state = state.copyWith(gender: gender);
   }
 
   /// 나이 업데이트
-  void updateAge(int age) {
-    state = state.copyWith(age: age);
+  void updateBirthDate(DateTime birthDate) {
+    state = state.copyWith(birthDate: birthDate);
   }
 
   /// 목적 토글 (복수 선택)
@@ -61,8 +67,7 @@ class OnboardingController extends Notifier<OnboardingData> {
     return state.nickname != null &&
         state.nickname!.isNotEmpty &&
         state.gender != null &&
-        state.age != null &&
-        state.age! > 0;
+        state.birthDate != null;
   }
 
   /// 2단계 데이터 검증 (목적 선택)

@@ -60,7 +60,9 @@ class _DiaryWriteScreenState extends ConsumerState<DiaryWriteScreen> {
 
     final content = _contentController.text.trim();
 
-    ref.read(diaryProvider.notifier).addEntry(
+    ref
+        .read(diaryProvider.notifier)
+        .addEntry(
           title: title,
           content: content.isNotEmpty ? content : null,
           imagePath: _selectedImagePath,

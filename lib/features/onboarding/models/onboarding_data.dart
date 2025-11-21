@@ -3,8 +3,9 @@ class OnboardingData {
   /// [OnboardingData] 생성자
   const OnboardingData({
     this.nickname,
+    this.password,
     this.gender,
-    this.age,
+    this.birthDate,
     this.purposes = const [],
     this.height,
     this.weight,
@@ -14,11 +15,26 @@ class OnboardingData {
   /// 닉네임
   final String? nickname;
 
+  // 비밀번호 설정 - 선택사항
+  final String? password;
+
   /// 성별
   final Gender? gender;
 
   /// 나이
-  final int? age;
+  final DateTime? birthDate;
+
+  // 나이 계산 getter
+  int? get age {
+    if (birthDate == null) return null;
+    final today = DateTime.now();
+    int age = today.year - birthDate!.year;
+    if (today.month < birthDate!.month ||
+        (today.month == birthDate!.month && today.day < birthDate!.day)) {
+      age--;
+    }
+    return age;
+  }
 
   /// 다이어트 목적 (복수 선택 가능)
   final List<DietPurpose> purposes;
@@ -52,19 +68,15 @@ class OnboardingData {
         return 88.362 + (13.397 * weight!) + (4.799 * height!) - (5.677 * age!);
       case Gender.female:
         return 447.593 + (9.247 * weight!) + (3.098 * height!) - (4.330 * age!);
-      case Gender.other:
-        // 평균값 사용
-        final male = 88.362 + (13.397 * weight!) + (4.799 * height!) - (5.677 * age!);
-        final female = 447.593 + (9.247 * weight!) + (3.098 * height!) - (4.330 * age!);
-        return (male + female) / 2;
     }
   }
 
   /// copyWith 메서드
   OnboardingData copyWith({
     String? nickname,
+    String? password,
     Gender? gender,
-    int? age,
+    DateTime? birthDate,
     List<DietPurpose>? purposes,
     double? height,
     double? weight,
@@ -72,8 +84,9 @@ class OnboardingData {
   }) {
     return OnboardingData(
       nickname: nickname ?? this.nickname,
+      password: password ?? this.password,
       gender: gender ?? this.gender,
-      age: age ?? this.age,
+      birthDate: birthDate ?? this.birthDate,
       purposes: purposes ?? this.purposes,
       height: height ?? this.height,
       weight: weight ?? this.weight,
@@ -89,9 +102,6 @@ enum Gender {
 
   /// 여성
   female,
-
-  /// 기타
-  other,
 }
 
 /// 성별 확장
@@ -103,8 +113,6 @@ extension GenderExtension on Gender {
         return '남성';
       case Gender.female:
         return '여성';
-      case Gender.other:
-        return '기타';
     }
   }
 }
@@ -125,6 +133,9 @@ enum DietPurpose {
 
   /// 식습관 개선
   nutrition,
+
+  /// 기타
+  other,
 }
 
 /// 다이어트 목적 확장
@@ -142,6 +153,8 @@ extension DietPurposeExtension on DietPurpose {
         return '건강 개선';
       case DietPurpose.nutrition:
         return '식습관 개선';
+      case DietPurpose.other:
+        return '기타';
     }
   }
 
@@ -158,6 +171,8 @@ extension DietPurposeExtension on DietPurpose {
         return '❤️';
       case DietPurpose.nutrition:
         return '🍴';
+      case DietPurpose.other:
+        return '📌';
     }
   }
 }
