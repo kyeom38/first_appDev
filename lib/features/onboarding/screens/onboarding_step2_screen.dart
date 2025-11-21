@@ -20,7 +20,7 @@ class OnboardingStep2Screen extends ConsumerWidget {
     final isValid = controller.validateStep2();
 
     return Scaffold(
-      backgroundColor: colors.surface,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
@@ -140,15 +140,27 @@ class OnboardingStep2Screen extends ConsumerWidget {
             ),
           ],
         ),
-        // 셋째 줄: 식습관 개선
-        SizedBox(
-          width: (MediaQuery.of(context).size.width - 72) / 2,
-          child: _buildPurposeCard(
-            colors,
-            purposes[4],
-            data.purposes.contains(purposes[4]),
-            controller,
-          ),
+        // 셋째 줄: 식습관 개선, 기타
+        Row(
+          children: [
+            Expanded(
+              child: _buildPurposeCard(
+                colors,
+                purposes[4],
+                data.purposes.contains(purposes[4]),
+                controller,
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: _buildPurposeCard(
+                colors,
+                purposes[5],
+                data.purposes.contains(purposes[5]),
+                controller,
+              ),
+            ),
+          ],
         ),
       ],
     );
@@ -171,9 +183,16 @@ class OnboardingStep2Screen extends ConsumerWidget {
               : Colors.white,
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
-            color: isSelected ? colors.primary : Colors.transparent,
+            color: isSelected ? colors.primary : Colors.grey.shade200,
             width: 3,
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 2),
+            ),
+          ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -219,6 +238,8 @@ class OnboardingStep2Screen extends ConsumerWidget {
         return const Color(0xFFEF5350); // 빨강
       case DietPurpose.nutrition:
         return const Color(0xFF66BB6A); // 초록
+      case DietPurpose.other:
+        return const Color(0xFF9E9E9E); //회색
     }
   }
 }

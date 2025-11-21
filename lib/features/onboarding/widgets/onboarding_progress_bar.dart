@@ -30,7 +30,7 @@ class OnboardingProgressBar extends StatelessWidget {
               right: index < totalSteps - 1 ? 8 : 0,
             ),
             decoration: BoxDecoration(
-              color: index < currentStep ? colors.primary : colors.surface,
+              color: index < currentStep ? colors.primary : Colors.grey.shade300,
               borderRadius: BorderRadius.circular(2),
             ),
           ),

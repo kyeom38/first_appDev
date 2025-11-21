@@ -44,7 +44,7 @@ class _OnboardingStep3ScreenState extends ConsumerState<OnboardingStep3Screen> {
     final isValid = controller.validateStep3();
 
     return Scaffold(
-      backgroundColor: colors.surface,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
@@ -114,6 +114,13 @@ class _OnboardingStep3ScreenState extends ConsumerState<OnboardingStep3Screen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,7 +151,7 @@ class _OnboardingStep3ScreenState extends ConsumerState<OnboardingStep3Screen> {
                 color: colors.textSecondary,
               ),
               filled: true,
-              fillColor: colors.surface,
+              fillColor: Colors.grey.shade50,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none,
@@ -167,6 +174,13 @@ class _OnboardingStep3ScreenState extends ConsumerState<OnboardingStep3Screen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -197,7 +211,7 @@ class _OnboardingStep3ScreenState extends ConsumerState<OnboardingStep3Screen> {
                 color: colors.textSecondary,
               ),
               filled: true,
-              fillColor: colors.surface,
+              fillColor: Colors.grey.shade50,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none,

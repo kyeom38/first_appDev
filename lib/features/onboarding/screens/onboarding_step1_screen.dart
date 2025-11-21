@@ -20,20 +20,17 @@ class OnboardingStep1Screen extends ConsumerStatefulWidget {
 
 class _OnboardingStep1ScreenState extends ConsumerState<OnboardingStep1Screen> {
   final _nicknameController = TextEditingController();
-  final _ageController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     final data = ref.read(onboardingProvider);
     _nicknameController.text = data.nickname ?? '';
-    _ageController.text = data.age?.toString() ?? '';
   }
 
   @override
   void dispose() {
     _nicknameController.dispose();
-    _ageController.dispose();
     super.dispose();
   }
 
@@ -45,9 +42,9 @@ class _OnboardingStep1ScreenState extends ConsumerState<OnboardingStep1Screen> {
     final isValid = controller.validateStep1();
 
     return Scaffold(
-      backgroundColor: colors.surface,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: colors.surface,
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: colors.textPrimary),
@@ -85,9 +82,11 @@ class _OnboardingStep1ScreenState extends ConsumerState<OnboardingStep1Screen> {
                     const SizedBox(height: 32),
                     _buildNicknameSection(colors, controller),
                     const SizedBox(height: 24),
+                    _buildPasswordSection(colors, controller),
+                    const SizedBox(height: 24),
                     _buildGenderSection(colors, data, controller),
                     const SizedBox(height: 24),
-                    _buildAgeSection(colors, controller),
+                    _buildBirthDateSection(colors, data, controller),
                   ],
                 ),
               ),
@@ -108,12 +107,22 @@ class _OnboardingStep1ScreenState extends ConsumerState<OnboardingStep1Screen> {
     );
   }
 
-  Widget _buildNicknameSection(AppColors colors, OnboardingController controller) {
+  Widget _buildNicknameSection(
+    AppColors colors,
+    OnboardingController controller,
+  ) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,7 +141,63 @@ class _OnboardingStep1ScreenState extends ConsumerState<OnboardingStep1Screen> {
                 color: colors.textSecondary,
               ),
               filled: true,
-              fillColor: colors.surface,
+              fillColor: Colors.grey.shade50,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide.none,
+              ),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 16,
+              ),
+            ),
+            style: AppTypography.body.copyWith(color: colors.textPrimary),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPasswordSection(
+    AppColors colors,
+    OnboardingController controller,
+  ) {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '비밀번호 (선택)',
+            style: AppTypography.title.copyWith(color: colors.textPrimary),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            '앱 잠금을 원하시면 비밀번호를 설정하세요',
+            style: AppTypography.caption.copyWith(color: colors.textSecondary),
+          ),
+          const SizedBox(height: 16),
+          TextField(
+            obscureText: true, // 비밀번호 숨김
+            onChanged: controller.updatePassword,
+            decoration: InputDecoration(
+              hintText: '4자리 이상 입력하세요',
+              hintStyle: AppTypography.body.copyWith(
+                color: colors.textSecondary,
+              ),
+              filled: true,
+              fillColor: Colors.grey.shade50,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none,
@@ -159,6 +224,13 @@ class _OnboardingStep1ScreenState extends ConsumerState<OnboardingStep1Screen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,16 +261,6 @@ class _OnboardingStep1ScreenState extends ConsumerState<OnboardingStep1Screen> {
                   controller,
                 ),
               ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _buildGenderButton(
-                  colors,
-                  '기타',
-                  Gender.other,
-                  data.gender == Gender.other,
-                  controller,
-                ),
-              ),
             ],
           ),
         ],
@@ -220,10 +282,10 @@ class _OnboardingStep1ScreenState extends ConsumerState<OnboardingStep1Screen> {
         decoration: BoxDecoration(
           color: isSelected
               ? colors.primary.withValues(alpha: 0.1)
-              : colors.surface,
+              : Colors.grey.shade50,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? colors.primary : colors.surface,
+            color: isSelected ? colors.primary : Colors.grey.shade300,
             width: 2,
           ),
         ),
@@ -240,51 +302,67 @@ class _OnboardingStep1ScreenState extends ConsumerState<OnboardingStep1Screen> {
     );
   }
 
-  Widget _buildAgeSection(AppColors colors, OnboardingController controller) {
+  Widget _buildBirthDateSection(
+    AppColors colors,
+    OnboardingData data,
+    OnboardingController controller,
+  ) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '나이',
+            '생년월일',
             style: AppTypography.title.copyWith(color: colors.textPrimary),
           ),
           const SizedBox(height: 16),
-          TextField(
-            controller: _ageController,
-            keyboardType: TextInputType.number,
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly,
-              LengthLimitingTextInputFormatter(3),
-            ],
-            onChanged: (value) {
-              final age = int.tryParse(value);
-              if (age != null) {
-                controller.updateAge(age);
+          InkWell(
+            onTap: () async {
+              final picked = await showDatePicker(
+                context: context,
+                initialDate: DateTime(2000, 1, 1),
+                firstDate: DateTime(1900),
+                lastDate: DateTime.now(),
+              );
+              if (picked != null) {
+                controller.updateBirthDate(picked);
               }
             },
-            decoration: InputDecoration(
-              hintText: '나이를 입력하세요',
-              hintStyle: AppTypography.body.copyWith(
-                color: colors.textSecondary,
-              ),
-              filled: true,
-              fillColor: colors.surface,
-              border: OutlineInputBorder(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade50,
                 borderRadius: BorderRadius.circular(16),
-                borderSide: BorderSide.none,
               ),
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 16,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    data.birthDate == null
+                        ? '생년월일을 선택하세요'
+                        : '${data.birthDate!.year}년 ${data.birthDate!.month}월 ${data.birthDate!.day}일',
+                    style: AppTypography.body.copyWith(
+                      color: data.birthDate == null
+                          ? colors.textSecondary
+                          : colors.textPrimary,
+                    ),
+                  ),
+                  Icon(Icons.calendar_today, color: colors.textSecondary),
+                ],
               ),
             ),
-            style: AppTypography.body.copyWith(color: colors.textPrimary),
           ),
         ],
       ),

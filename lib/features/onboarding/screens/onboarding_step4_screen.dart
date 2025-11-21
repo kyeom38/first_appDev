@@ -126,7 +126,7 @@ class _OnboardingStep4ScreenState extends ConsumerState<OnboardingStep4Screen> {
         _selectedDate != null;
 
     return Scaffold(
-      backgroundColor: colors.surface,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
@@ -204,6 +204,13 @@ class _OnboardingStep4ScreenState extends ConsumerState<OnboardingStep4Screen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -230,7 +237,7 @@ class _OnboardingStep4ScreenState extends ConsumerState<OnboardingStep4Screen> {
                 color: colors.textSecondary,
               ),
               filled: true,
-              fillColor: colors.surface,
+              fillColor: Colors.grey.shade50,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none,
@@ -253,6 +260,13 @@ class _OnboardingStep4ScreenState extends ConsumerState<OnboardingStep4Screen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -279,7 +293,7 @@ class _OnboardingStep4ScreenState extends ConsumerState<OnboardingStep4Screen> {
                 color: colors.textSecondary,
               ),
               filled: true,
-              fillColor: colors.surface,
+              fillColor: Colors.grey.shade50,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none,
@@ -302,6 +316,13 @@ class _OnboardingStep4ScreenState extends ConsumerState<OnboardingStep4Screen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -322,7 +343,7 @@ class _OnboardingStep4ScreenState extends ConsumerState<OnboardingStep4Screen> {
                 vertical: 16,
               ),
               decoration: BoxDecoration(
-                color: colors.surface,
+                color: Colors.grey.shade50,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Row(

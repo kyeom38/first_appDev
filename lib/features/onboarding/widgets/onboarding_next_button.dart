@@ -32,7 +32,7 @@ class OnboardingNextButton extends StatelessWidget {
         onPressed: isEnabled ? onPressed : null,
         style: ElevatedButton.styleFrom(
           backgroundColor: colors.primary,
-          disabledBackgroundColor: colors.surface,
+          disabledBackgroundColor: Colors.grey.shade300,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(28),
           ),
@@ -41,7 +41,7 @@ class OnboardingNextButton extends StatelessWidget {
         child: Text(
           label,
           style: AppTypography.title.copyWith(
-            color: isEnabled ? Colors.white : colors.textSecondary,
+            color: isEnabled ? Colors.white : Colors.grey.shade600,
           ),
         ),
       ),
