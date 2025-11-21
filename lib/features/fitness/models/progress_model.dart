@@ -85,7 +85,9 @@ class ProgressModel {
   int? get dDay {
     if (targetDate == null) return null;
     final now = DateTime.now();
-    final difference = targetDate!.difference(DateTime(now.year, now.month, now.day));
+    final difference = targetDate!.difference(
+      DateTime(now.year, now.month, now.day),
+    );
     return difference.inDays;
   }
 

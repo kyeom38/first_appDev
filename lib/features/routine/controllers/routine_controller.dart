@@ -2,9 +2,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/routine.dart';
 
 /// 물 마시기 Provider
-final waterIntakeProvider = NotifierProvider<WaterIntakeController, WaterIntake>(
-  WaterIntakeController.new,
-);
+final waterIntakeProvider =
+    NotifierProvider<WaterIntakeController, WaterIntake>(
+      WaterIntakeController.new,
+    );
 
 /// 물 마시기 컨트롤러
 class WaterIntakeController extends Notifier<WaterIntake> {
@@ -76,10 +77,7 @@ class RoutineController extends Notifier<List<Routine>> {
   void toggleComplete(String id) {
     state = [
       for (final routine in state)
-        if (routine.id == id)
-          _toggleRoutineComplete(routine)
-        else
-          routine,
+        if (routine.id == id) _toggleRoutineComplete(routine) else routine,
     ];
   }
 

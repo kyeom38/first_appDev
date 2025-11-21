@@ -79,7 +79,9 @@ class _GoalSettingScreenState extends ConsumerState<GoalSettingScreen> {
     }
 
     // Controller에 목표 저장
-    ref.read(fitnessControllerProvider.notifier).setGoal(
+    ref
+        .read(fitnessControllerProvider.notifier)
+        .setGoal(
           startWeight: startWeight,
           goalWeight: goalWeight,
           targetDate: _selectedDate!,
@@ -104,7 +106,10 @@ class _GoalSettingScreenState extends ConsumerState<GoalSettingScreen> {
         backgroundColor: const Color(0xFFF7F9FC),
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.calendar_today_outlined, color: Color(0xFF1A1F36)),
+          icon: const Icon(
+            Icons.calendar_today_outlined,
+            color: Color(0xFF1A1F36),
+          ),
           onPressed: () {},
         ),
         title: Text(
@@ -231,7 +236,10 @@ class _GoalSettingScreenState extends ConsumerState<GoalSettingScreen> {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 16,
+                ),
               ),
             ),
             const SizedBox(height: 24),
@@ -264,7 +272,10 @@ class _GoalSettingScreenState extends ConsumerState<GoalSettingScreen> {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 16,
+                ),
               ),
             ),
             const SizedBox(height: 24),
@@ -282,7 +293,10 @@ class _GoalSettingScreenState extends ConsumerState<GoalSettingScreen> {
             InkWell(
               onTap: _selectDate,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 16,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),

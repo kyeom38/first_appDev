@@ -94,7 +94,9 @@ class _OnboardingStep4ScreenState extends ConsumerState<OnboardingStep4Screen> {
     }
 
     // 목표 저장
-    ref.read(fitnessControllerProvider.notifier).setGoal(
+    ref
+        .read(fitnessControllerProvider.notifier)
+        .setGoal(
           startWeight: startWeight,
           goalWeight: goalWeight,
           targetDate: _selectedDate!,
@@ -121,7 +123,8 @@ class _OnboardingStep4ScreenState extends ConsumerState<OnboardingStep4Screen> {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).extension<AppColors>()!;
-    final isValid = _startWeightController.text.isNotEmpty &&
+    final isValid =
+        _startWeightController.text.isNotEmpty &&
         _goalWeightController.text.isNotEmpty &&
         _selectedDate != null;
 

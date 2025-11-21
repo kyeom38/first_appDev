@@ -101,14 +101,19 @@ class _OnboardingStep3ScreenState extends ConsumerState<OnboardingStep3Screen> {
           margin: const EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: index == 2 ? colors.primary : colors.textSecondary.withValues(alpha: 0.3),
+            color: index == 2
+                ? colors.primary
+                : colors.textSecondary.withValues(alpha: 0.3),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildHeightSection(AppColors colors, OnboardingController controller) {
+  Widget _buildHeightSection(
+    AppColors colors,
+    OnboardingController controller,
+  ) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -168,7 +173,10 @@ class _OnboardingStep3ScreenState extends ConsumerState<OnboardingStep3Screen> {
     );
   }
 
-  Widget _buildWeightSection(AppColors colors, OnboardingController controller) {
+  Widget _buildWeightSection(
+    AppColors colors,
+    OnboardingController controller,
+  ) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(

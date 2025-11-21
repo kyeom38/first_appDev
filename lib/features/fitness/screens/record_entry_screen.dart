@@ -44,7 +44,9 @@ class _RecordEntryScreenState extends ConsumerState<RecordEntryScreen> {
     }
 
     // Controller에 기록 저장
-    ref.read(fitnessControllerProvider.notifier).addDailyRecord(
+    ref
+        .read(fitnessControllerProvider.notifier)
+        .addDailyRecord(
           weight: weight,
           caloriesIntake: caloriesIntake,
           caloriesBurned: caloriesBurned,
@@ -69,7 +71,10 @@ class _RecordEntryScreenState extends ConsumerState<RecordEntryScreen> {
         backgroundColor: const Color(0xFFF7F9FC),
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.calendar_today_outlined, color: Color(0xFF1A1F36)),
+          icon: const Icon(
+            Icons.calendar_today_outlined,
+            color: Color(0xFF1A1F36),
+          ),
           onPressed: () {},
         ),
         title: Text(
@@ -196,7 +201,10 @@ class _RecordEntryScreenState extends ConsumerState<RecordEntryScreen> {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 16,
+                ),
               ),
             ),
             const SizedBox(height: 24),
@@ -229,7 +237,10 @@ class _RecordEntryScreenState extends ConsumerState<RecordEntryScreen> {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 16,
+                ),
               ),
             ),
             const SizedBox(height: 24),
@@ -262,7 +273,10 @@ class _RecordEntryScreenState extends ConsumerState<RecordEntryScreen> {
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
                 ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 16,
+                ),
               ),
             ),
             const SizedBox(height: 40),
